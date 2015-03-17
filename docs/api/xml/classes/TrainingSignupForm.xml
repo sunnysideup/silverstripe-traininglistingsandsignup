@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="TrainingSignupForm" namespace="" name="TrainingSignupForm" abstract="false" final="false" start="3" end="121">
+  <file path="/var/www/_modules/traininglistingsandsignup/trunk/docs/en/phpdox/../../../code/form" file="TrainingSignupForm.php" realpath="/var/www/_modules/traininglistingsandsignup/trunk/code/form/TrainingSignupForm.php" size="3978" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="dce76f19c5f642871a55a90cfe4bbda482cef1f0" relative="code/form/TrainingSignupForm.php"/>
+  <extends full="Form" namespace="" name="Form"/>
+  <constructor name="__construct" start="5" end="50" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="controller" byreference="false" type="{unknown}"/>
+    <parameter name="name" byreference="false" type="{unknown}"/>
+    <parameter name="title" byreference="false" type="string" default="&quot;Training&quot;"/>
+  </constructor>
+  <method name="doSave" start="52" end="87" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="data" byreference="false" type="{unknown}"/>
+    <parameter name="form" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="We need to ensure that the unique field is never overwritten" line="57"/>
+    </inline>
+  </method>
+</class>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<source xmlns="http://xml.phpdox.net/src">
+  <dir name="/var/www/_modules/traininglistingsandsignup/trunk">
+    <file name="_config.php" size="376" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="89d1a5958fad0667e9f5d9201b9eaa0c7b98ce27" xml="tokens/_config.php.xml"/>
+    <dir name="code">
+      <file name="TrainingHolder.php" size="1800" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="03fa67ce0bf2b5970a21c5d77d10b36820257f8d" xml="tokens/code/TrainingHolder.php.xml"/>
+      <file name="TrainingPage.php" size="4765" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="5ab3de9270c34e1bf0fb0fae90e7074fdcce71ea" xml="tokens/code/TrainingPage.php.xml"/>
+      <dir name="form">
+        <file name="TrainingSignupForm.php" size="3978" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="dce76f19c5f642871a55a90cfe4bbda482cef1f0" xml="tokens/code/form/TrainingSignupForm.php.xml"/>
+      </dir>
+      <dir name="decorators">
+        <file name="TrainingMemberDecorator.php" size="1826" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="a3257f7d412488ae3a3e3b8bbf01e81c4ea81f39" xml="tokens/code/decorators/TrainingMemberDecorator.php.xml"/>
+      </dir>
+    </dir>
+  </dir>
+</source>

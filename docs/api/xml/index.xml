@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="/var/www/_modules/traininglistingsandsignup/trunk">
+  <namespace name="">
+    <class name="TrainingHolder" src="code/TrainingHolder.php" xml="classes/TrainingHolder.xml"/>
+    <class name="TrainingHolder_Controller" src="code/TrainingHolder.php" xml="classes/TrainingHolder_Controller.xml"/>
+    <class name="TrainingPage" src="code/TrainingPage.php" xml="classes/TrainingPage.xml"/>
+    <class name="TrainingPage_Controller" src="code/TrainingPage.php" xml="classes/TrainingPage_Controller.xml"/>
+    <class name="TrainingSignupForm" src="code/form/TrainingSignupForm.php" xml="classes/TrainingSignupForm.xml"/>
+    <class name="TrainingMemberDecorator" src="code/decorators/TrainingMemberDecorator.php" xml="classes/TrainingMemberDecorator.xml"/>
+  </namespace>
+</index>
