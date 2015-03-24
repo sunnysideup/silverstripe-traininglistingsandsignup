@@ -3,33 +3,26 @@
  *
  * @author nicolaas [at] sunnysideup.co.nz
  */
-class TrainingMemberDecorator extends DataObjectDecorator {
+class TrainingMemberDecorator extends DataExtension {
 
-	function extraStatics() {
-		return array(
-			'belongs_many_many' => array(
-				'Training' => 'TrainingPage'
-			),
-			'db' => array(
-				'Organisation' => 'Varchar',
-				'Phone' => 'Varchar'
-			)
-		);
-	}
+	private static $belongs_many_many = array(
+		'Training' => 'TrainingPage'
+	);
+	private static $db = array(
+		'Organisation' => 'Varchar',
+		'Phone' => 'Varchar'
+	);
 
 
 
 	function getTrainingFields() {
-		$fields = new FieldSet(
+		$fields = new FieldList(
 			new TextField('FirstName', 'First Name'),
 			new TextField('Surname', 'Surname'),
 			new TextField('Organisation'),
 			new EmailField('Email', 'Email'),
 			new TextField('Phone')
 		);
-
-		$this->owner->extend('augmentTrainingFields', $fields);
-
 		return $fields;
 	}
 
@@ -41,9 +34,6 @@ class TrainingMemberDecorator extends DataObjectDecorator {
 			'Email',
 			'Phone'
 		);
-
-		$this->owner->extend('augmentTrainingRequiredFields', $fields);
-
 		return $fields;
 	}
 
@@ -57,8 +47,8 @@ class TrainingMemberDecorator extends DataObjectDecorator {
 		// We need to ensure that the unique field is never overwritten
 		$uniqueField = Member::get_unique_identifier_field();
 		if(isset($data[$uniqueField])) {
-			$SQL_unique = Convert::raw2xml($data[$uniqueField]);
-			$existingUniqueMember = DataObject::get_one('Member', "$uniqueField = '{$SQL_unique}'");
+			$SQL_unique = Convert::raw2sql($data[$uniqueField]);
+			$existingUniqueMember = Member::get()->filter(array($uniqueField => $SQL_unique))->first();
 			if($existingUniqueMember && $existingUniqueMember->exists()) {
 				if(Member::currentUserID() != $existingUniqueMember->ID) {
 					return false;

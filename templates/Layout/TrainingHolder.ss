@@ -1,8 +1,8 @@
-<% control MonthlyCourses %>
+<% loop MonthlyCourses %>
 <div class="MonthlyCoursesMonth">
 	$Date.Format(F) - $Date.Year
 	<ul>
-	<% control Courses  %>
+	<% loop Courses  %>
 		<li>
 			<div class="TrainingItemRowOne">
 				<span class="TrainingTitle">$Title</span>
@@ -17,10 +17,10 @@
 				$Content
 			</div>
 		</li>
-	<% end_control %>
+	<% end_loop %>
 	</ul>
 </div>
-<% end_control %>
+<% end_loop %>
 
 
 

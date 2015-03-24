@@ -8,7 +8,7 @@ class TrainingSignupForm extends Form {
 		else {
 			$member = new Member();
 		}
-		$fields = new FieldSet(
+		$fields = new FieldList(
 			new HeaderField($title)
 		);
 		$extraFields = $member->getTrainingFields();
@@ -23,7 +23,7 @@ class TrainingSignupForm extends Form {
 				$fields->push($field);
 			}
 		}
-		$actions = new FieldSet(
+		$actions = new FieldList(
 				new FormAction("doSave", "Sign Up Now")
 		);
 		$requiredFields = new RequiredFields(
@@ -57,11 +57,11 @@ class TrainingSignupForm extends Form {
 		// We need to ensure that the unique field is never overwritten
 		$uniqueField = Member::get_unique_identifier_field();
 		if(isset($data[$uniqueField])) {
-			$SQL_unique = Convert::raw2xml($data[$uniqueField]);
-			$existingUniqueMember = DataObject::get_one('Member', "$uniqueField = '{$SQL_unique}'");
+			$SQL_unique = Convert::raw2sql($data[$uniqueField]);
+			$existingUniqueMember = Member::get()->filter(array($uniqueField => $SQL_unique))->first();
 			if($existingUniqueMember && $existingUniqueMember->exists()) {
 				if(Member::currentUserID() != $existingUniqueMember->ID) {
-					die("current member does not match enrolled member");
+					die("current member does not match enrolled member.");
 					return false;
 				}
 			}
@@ -81,7 +81,7 @@ class TrainingSignupForm extends Form {
 			$arrayExtraFields["BookingCode"] = $data["BookingCode"];
 		}
 		$this->controller->addAttendee($member, $arrayExtraFields);
-		Director::redirect($this->controller->Link()."thankyou");
+		$this->redirect($this->getController()->Link("thankyou"));
 		return;
 
 	}
