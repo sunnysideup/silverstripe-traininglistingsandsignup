@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="TrainingMemberDecorator" namespace="" name="TrainingMemberDecorator" abstract="false" final="false" start="6" end="79">
+  <file path="/var/www/_modules/traininglistingsandsignup/trunk/docs/en/phpdox/../../../code/decorators" file="TrainingMemberDecorator.php" realpath="/var/www/_modules/traininglistingsandsignup/trunk/code/decorators/TrainingMemberDecorator.php" size="1826" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="a3257f7d412488ae3a3e3b8bbf01e81c4ea81f39" relative="code/decorators/TrainingMemberDecorator.php"/>
+  <docblock>
+    <description/>
+    <author value="nicolaas [at] sunnysideup.co.nz"/>
+  </docblock>
+  <extends full="DataObjectDecorator" namespace="" name="DataObjectDecorator"/>
+  <method name="extraStatics" start="8" end="18" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getTrainingFields" start="22" end="34" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getTrainingRequiredFields" start="36" end="48" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="createOrMerge" start="50" end="76" abstract="false" final="false" static="true" visibility="public">
+    <parameter name="data" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="Because we are using a ConfirmedPasswordField, the password will" line="51"/>
+      <comment value="be an array of two fields" line="52"/>
+      <comment value="We need to ensure that the unique field is never overwritten" line="57"/>
+    </inline>
+  </method>
+</class>

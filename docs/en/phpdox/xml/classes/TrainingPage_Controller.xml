@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="TrainingPage_Controller" namespace="" name="TrainingPage_Controller" abstract="false" final="false" start="105" end="138">
+  <file path="/var/www/_modules/traininglistingsandsignup/trunk/docs/en/phpdox/../../../code" file="TrainingPage.php" realpath="/var/www/_modules/traininglistingsandsignup/trunk/code/TrainingPage.php" size="4765" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="5ab3de9270c34e1bf0fb0fae90e7074fdcce71ea" relative="code/TrainingPage.php"/>
+  <extends full="Page_Controller" namespace="" name="Page_Controller"/>
+  <method name="SignUpForm" start="107" end="119" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="thankyou" start="121" end="125" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="MemberAlreadySignedUp" start="127" end="135" abstract="false" final="false" static="false" visibility="public"/>
+</class>
