@@ -3,8 +3,10 @@
     "type": "silverstripe-module",
     "description": "create a training signup for your silverstripe website",
     "keywords": [
-        "traininglistingsandsignup",
-        "silverstripe"
+        "Silverstripe-CMS",
+        "CMS",
+        "Silverstripe",
+        "traininglistingsandsignup"
     ],
     "license": "Sunny Side Up (BSD-3-Clause and CUSTOM)",
     "authors": [
@@ -15,7 +17,8 @@
         }
     ],
     "require": {
-        "silverstripe/framework": "~3.1"
+        "silverstripe/framework": "~3.1",
+        "silverstripe/cms": "~3.1"
     },
     "extra": {
         "installer-name": "traininglistingsandsignup"

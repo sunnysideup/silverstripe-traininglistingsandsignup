@@ -1,90 +1,87 @@
 <?php
 
-class TrainingSignupForm extends Form {
+class TrainingSignupForm extends Form
+{
+    public function __construct($controller, $name, $title = "Training")
+    {
+        if ($member = Member::currentUser()) {
+        } else {
+            $member = new Member();
+        }
+        $fields = new FieldList(
+            new HeaderField($title)
+        );
+        $extraFields = $member->getTrainingFields();
+        foreach ($extraFields as $field) {
+            if ("Password" == $field->title() && $member->ID) {
+            } elseif ("Password" == $field->title()) {
+                $fields->push(new ConfirmedPasswordField("Password"));
+            } else {
+                $fields->push($field);
+            }
+        }
+        $actions = new FieldList(
+                new FormAction("doSave", "Sign Up Now")
+        );
+        $requiredFields = new RequiredFields(
+            "FirstName",
+            "Surname",
+            "Email",
+            "Password"
+        );
+        if ($controller->Options) {
+            $array = array();
+            $explodedOptions = explode(",", $controller->Options);
+            foreach ($explodedOptions as $option) {
+                $option = trim(Convert::raw2att($option));
+                $array[$option] = $option;
+            }
+            if (count($array)) {
+                $fields->push(new DropdownField("SelectedOption", "Select Option", $array));
+            }
+        }
+        $fields->push(new TextField("BookingCode", "Booking Code (if any)"));
+        parent::__construct($controller, $name, $fields, $actions, $requiredFields);
+        $this->loadNonBlankDataFrom($member);
+        return $this;
+    }
 
-	function __construct($controller, $name, $title = "Training") {
-		if($member = Member::currentUser()) {
-		}
-		else {
-			$member = new Member();
-		}
-		$fields = new FieldList(
-			new HeaderField($title)
-		);
-		$extraFields = $member->getTrainingFields();
-		foreach($extraFields as $field) {
-			if("Password" == $field->title() && $member->ID) {
+    public function doSave($data, $form)
+    {
+        if (isset($data['Password']) && is_array($data['Password'])) {
+            $data['Password'] = $data['Password']['_Password'];
+        }
 
-			}
-			elseif("Password" == $field->title() ) {
-				$fields->push(new ConfirmedPasswordField("Password"));
-			}
-			else {
-				$fields->push($field);
-			}
-		}
-		$actions = new FieldList(
-				new FormAction("doSave", "Sign Up Now")
-		);
-		$requiredFields = new RequiredFields(
-			"FirstName",
-			"Surname",
-			"Email",
-			"Password"
-		);
-		if($controller->Options) {
-			$array = array();
-			$explodedOptions = explode(",", $controller->Options);
-			foreach($explodedOptions as $option) {
-				$option = trim(Convert::raw2att($option));
-				$array[$option] = $option;
-			}
-			if(count($array) ) {
-				$fields->push(new DropdownField("SelectedOption", "Select Option", $array));
-			}
-		}
-		$fields->push(new TextField("BookingCode", "Booking Code (if any)"));
-		parent::__construct($controller, $name, $fields, $actions, $requiredFields);
-		$this->loadNonBlankDataFrom($member);
-		return $this;
-	}
+        // We need to ensure that the unique field is never overwritten
+        $uniqueField = Member::get_unique_identifier_field();
+        if (isset($data[$uniqueField])) {
+            $SQL_unique = Convert::raw2sql($data[$uniqueField]);
+            $existingUniqueMember = Member::get()->filter(array($uniqueField => $SQL_unique))->first();
+            if ($existingUniqueMember && $existingUniqueMember->exists()) {
+                if (Member::currentUserID() != $existingUniqueMember->ID) {
+                    die("current member does not match enrolled member.");
+                    return false;
+                }
+            }
+        }
+        $member = Member::currentUser();
+        if (!$member) {
+            $member = new Member();
+        }
 
-	function doSave($data, $form) {
-		if(isset($data['Password']) && is_array($data['Password'])) {
-			$data['Password'] = $data['Password']['_Password'];
-		}
-
-		// We need to ensure that the unique field is never overwritten
-		$uniqueField = Member::get_unique_identifier_field();
-		if(isset($data[$uniqueField])) {
-			$SQL_unique = Convert::raw2sql($data[$uniqueField]);
-			$existingUniqueMember = Member::get()->filter(array($uniqueField => $SQL_unique))->first();
-			if($existingUniqueMember && $existingUniqueMember->exists()) {
-				if(Member::currentUserID() != $existingUniqueMember->ID) {
-					die("current member does not match enrolled member.");
-					return false;
-				}
-			}
-		}
-		$member = Member::currentUser();
-		if(!$member) {
-			$member = new Member();
-		}
-
-		$member->update($data);
-		$member->write();
-		$arrayExtraFields = array();
-		if(isset($data["SelectedOption"])) {
-			$arrayExtraFields["SelectedOption"] = $data["SelectedOption"];
-		}
-		if(isset($data["BookingCode"])) {
-			$arrayExtraFields["BookingCode"] = $data["BookingCode"];
-		}
-		$this->controller->addAttendee($member, $arrayExtraFields);
-		$this->redirect($this->getController()->Link("thankyou"));
-		return;
-
-	}
+        $member->update($data);
+        $member->write();
+        $arrayExtraFields = array();
+        if (isset($data["SelectedOption"])) {
+            $arrayExtraFields["SelectedOption"] = $data["SelectedOption"];
+        }
+        if (isset($data["BookingCode"])) {
+            $arrayExtraFields["BookingCode"] = $data["BookingCode"];
+        }
+        $this->controller->addAttendee($member, $arrayExtraFields);
+        $this->redirect($this->getController()->Link("thankyou"));
+        return;
+    }
 
 /*
 
@@ -116,10 +113,4 @@ relation, CheckboxSetField is aim to submit multiple IDs from a form
 $this->Categories->add need to change to $this->Categories-
 
 */
-
-
 }
-
-
-
-
