@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="TrainingHolder_Controller" namespace="" name="TrainingHolder_Controller" abstract="false" final="false" start="25" end="60">
-  <file path="/var/www/_modules/traininglistingsandsignup/trunk/docs/en/phpdox/../../../code" file="TrainingHolder.php" realpath="/var/www/_modules/traininglistingsandsignup/trunk/code/TrainingHolder.php" size="1800" time="2015-03-14T10:23:13+13:00" unixtime="1426281793" sha1="03fa67ce0bf2b5970a21c5d77d10b36820257f8d" relative="code/TrainingHolder.php"/>
-  <extends full="Page_Controller" namespace="" name="Page_Controller"/>
-  <method name="MonthlyCourses" start="27" end="58" abstract="false" final="false" static="false" visibility="public"/>
-</class>
